@@ -32,22 +32,28 @@ module.exports = ({env}) => ({
   // ...
   upload: {
     config: {
-      provider: "strapi-provider-upload-do", 
+      provider: "strapi-provider-upload-do-virtuali",
       providerOptions: {
         key: env('DO_SPACE_ACCESS_KEY'),
         secret: env('DO_SPACE_SECRET_KEY'),
         endpoint: env('DO_SPACE_ENDPOINT'),
         space: env('DO_SPACE_BUCKET'),
-        directory: env('DO_SPACE_DIRECTORY'),
+        directory: env('DO_SPACE_DIRECTORY'), // default destination directory
         cdn: env('DO_SPACE_CDN'),
-      }
+        folders: [{folderName: 'courses', acl: 'private'}, {folderName: 'members', acl: 'private'}],
+        acl: 'public-read', // default ACL
+      },
+      actionOptions: {
+        upload: {},
+        uploadStream: {},
+        delete: {},
+      },
     },
   }, 
   // ...
 })
 
 ```
-
 3. Create `.env` and add provide Digital Ocean config.
 
 ```bash
@@ -64,6 +70,54 @@ with values obtained from tutorial:
 > https://www.digitalocean.com/community/tutorials/how-to-create-a-digitalocean-space-and-api-key
 
 Parameter `DO_SPACE_DIRECTORY` and `DO_SPACE_CDN` is optional and you can ommit them both in `.env` and `settings`.
+
+## Configuration to displiay thumbnails in strapi media library
+
+Create or update config in `./config/middlewares.js` with content
+
+```js
+module.exports = [
+  'strapi::errors',
+  // 'strapi::security',
+  {
+    name: 'strapi::security',
+    config: {
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+          'connect-src': ["'self'", 'https:'],
+          'img-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            '*.digitaloceanspaces.com',
+          ],
+          'media-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            '*.digitaloceanspaces.com',
+          ],
+          upgradeInsecureRequests: null,
+        },
+      },
+    },
+  },
+  'strapi::cors',
+  'strapi::poweredBy',
+  'strapi::logger',
+  'strapi::query',
+  'strapi::body',
+  'strapi::session',
+  'strapi::favicon',
+  'strapi::public',
+];
+```
+## **Changes**
+  - If the directory property value is undefined files will be uploaded to the root of the space.
+  - If the acl property is undefines files will be set a public 'public-read'.
+  - This plugin will check if the name has this format mainfolder_subfolder_fileName.ext the file will be uploaded to mainfolder/subfolder/fileName.ext under the space root. The main folder is validated agains folders array to obtain the acl of the file.
+  - This plugin is comppatible with strapi v4.x.
 
 ## Resources
 
