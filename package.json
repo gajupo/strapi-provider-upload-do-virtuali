@@ -1,6 +1,6 @@
 {
   "name": "strapi-provider-upload-do-virtuali",
-  "version": "3.7.7",
+  "version": "3.7.8",
   "description": "Digital ocean spaces provider for Strapi upload plugin",
   "homepage": "http://strapi.io",
   "keywords": [
