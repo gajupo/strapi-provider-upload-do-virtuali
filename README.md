@@ -118,6 +118,7 @@ module.exports = [
   - If the acl property is undefines files will be set a public 'public-read'.
   - This plugin will check if the name has this format mainfolder_subfolder_fileName.ext the file will be uploaded to mainfolder/subfolder/fileName.ext under the space root. The main folder is validated agains folders array to obtain the acl of the file.
   - This plugin is comppatible with strapi v4.x.
+  - Was added method to download the file from DO and return it as ReadStream
 
 ## Resources
 
