@@ -66,10 +66,10 @@ querystring@0.2.0:
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
   integrity sha512-X/xY82scca2tau62i9mDyU9K+I+djTMUsvwf7xnUX5GLvVzgJybOJf4Y6o9Zx3oJK/LSXg5tTZBjwzqVPaPO2g==
 
-s3-readstream@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/s3-readstream/-/s3-readstream-0.1.0.tgz#638d3cfc92e80e8fce58e5876a895f7229090d7b"
-  integrity sha512-5XGq10AzdwWxKzYaT/naDi0F3lRjeFDJGfLeanRaLkU7qaeaTDdF9ZHgDi1zFQAImaI4vaED9gjo4MKCbr1I3w==
+s3-readstream-virtuali@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/s3-readstream-virtuali/-/s3-readstream-virtuali-0.1.1.tgz#4fa560ee092dce45815a9784b88fe2d012a4f2b9"
+  integrity sha512-uoBnQ8ooggRMerFd29dA5gQMjTLp00yML+riuT5w1mYj0a1aoiVL6IpaHdVQVzcHOhn0f8C4mNz7NymBy/JRVw==
 
 sax@1.2.1:
   version "1.2.1"
