@@ -16,7 +16,7 @@
   "main": "./lib",
   "dependencies": {
     "aws-sdk": "2.388.0",
-    "s3-readstream-virtuali": "^0.1.1",
+    "s3-readstream-virtuali": "^0.1.2",
     "urijs": "^1.19.11"
   },
   "strapi": {
